@@ -90,7 +90,8 @@ class TemosComputeLosses(Module):
             contact_text_i = torch.zeros(1)
             print("Skipping shape mismatch in idx", max(idx), contacts_motion.shape[1])
 
-          print(contacts_ref.shape, i)  
+          print(len(contacts_ref), i)
+          print(contacts_ref[i].shape) 
           contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
           # velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
         #   print('contacts_shape', contact_motions_i.shape, contact_text_i.shape, contacts_ref_i.shape)
