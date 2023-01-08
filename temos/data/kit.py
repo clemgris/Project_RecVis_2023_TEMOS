@@ -81,11 +81,11 @@ class KIT(Dataset):
 
         super().__init__()
         keyids = get_split_keyids(path=splitpath, split=split)
-        print(len(keyids))
-        sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
-        sub_list = np.load(sub_list_path)['list']
-        keyids = list(set(keyids).intersection(set(sub_list)))
-        print(len(keyids))
+        # print(len(keyids))
+        # sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
+        # sub_list = np.load(sub_list_path)['list']
+        # keyids = list(set(keyids).intersection(set(sub_list)))
+        # print(len(keyids))
 
         features_data = {}
         texts_data = {}
@@ -252,7 +252,7 @@ def load_annotation(keyid, datapath):
 
 def load_mmm_keyid(keyid, datapath):
     xyzpath = datapath / (keyid + "_fke.csv")
-    print(xyzpath)
+    # print(xyzpath)
     xyzdata = pandas.read_csv(xyzpath, index_col=0)
     joints = np.array(xyzdata).reshape(-1, 21, 3)
     return joints
