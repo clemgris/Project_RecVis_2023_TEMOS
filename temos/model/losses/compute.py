@@ -92,7 +92,7 @@ class TemosComputeLosses(Module):
             contact_text_i = torch.zeros(1)
             contacts_ref_i = torch.zeros(2)
             velocities_i = torch.zeros(3)
-            print("Skipping shape mismatch in idx", max(idx), contacts_motion.shape[1])
+            # print("Skipping shape mismatch in idx", max(idx), contacts_motion.shape[1])
           
           # velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
         #   print('contacts_shape', contact_motions_i.shape, contact_text_i.shape, contacts_ref_i.shape)
@@ -102,28 +102,28 @@ class TemosComputeLosses(Module):
             total += 0.01*bce_motion
           else :
             bce_motion=torch.zeros(1)[0]
-            print("skipping mismatch shape contact motion, shape : ", contact_motions_i.shape, contacts_ref_i.shape)
+            # print("skipping mismatch shape contact motion, shape : ", contact_motions_i.shape, contacts_ref_i.shape)
 
           if contact_text_i.shape==contacts_ref_i.shape:
             bce_text = bce(contact_text_i, contacts_ref_i)
             total += 0.01 * bce_text
           else :
             bce_text=torch.zeros(1)[0]
-            print("skipping mismatch shape contact text, shape : ", contact_text_i.shape, contacts_ref_i.shape)
+            # print("skipping mismatch shape contact text, shape : ", contact_text_i.shape, contacts_ref_i.shape)
           
           if contact_motions_i.shape==velocities_i.shape:
             vel_motion = (contact_motions_i*velocities_i).sum()
             total += 0.01 * vel_motion
           else:
             vel_motion=torch.zeros(1)[0]
-            print("skipping mismatch shape vel motion, shape : ", contact_motions_i.shape, velocities_i.shape)
+            # print("skipping mismatch shape vel motion, shape : ", contact_motions_i.shape, velocities_i.shape)
 
           if contact_text_i.shape==velocities_i.shape:
             vel_text = (contact_text_i*velocities_i).sum()
             total += 0.01 * vel_text
           else:
             vel_text=torch.zeros(1)[0]
-            print("skipping mismatch shape vel text, shape : ", contact_text_i.shape, velocities_i.shape)
+            # print("skipping mismatch shape vel text, shape : ", contact_text_i.shape, velocities_i.shape)
 
         #   total += 0.01*(bce_motion + bce_text + vel_motion + vel_text)
 
