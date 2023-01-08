@@ -90,8 +90,8 @@ class KIT(Dataset):
         features_data = {}
         texts_data = {}
         durations = {}
-        all_contacts = {}
-        all_velocities = {}
+        # all_contacts = {}
+        # all_velocities = {}
 
         if load_amass_data:
             with open(correspondance_path) as correspondance_path_file:
@@ -141,8 +141,8 @@ class KIT(Dataset):
                 joints = load_mmm_keyid(keyid, datapath)
                 joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate)
 
-            contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
-            contacts, velocities = load_contact_keyid(keyid, contact_path)
+            # contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
+            # contacts, velocities = load_contact_keyid(keyid, contact_path)
 
             if split != "test" and not tiny:
                 # Accept or not the sample, based on the duration
@@ -164,8 +164,8 @@ class KIT(Dataset):
             features_data[keyid] = features
             texts_data[keyid] = anndata
             durations[keyid] = duration
-            all_contacts[keyid] = contacts
-            all_velocities[keyid] = velocities
+            # all_contacts[keyid] = contacts
+            # all_velocities[keyid] = velocities
 
         if load_amass_data and not tiny:
             percentage = 100 * bad_smpl / (bad_smpl + good_smpl)
@@ -178,8 +178,8 @@ class KIT(Dataset):
 
         self.features_data = features_data
         self.texts_data = texts_data
-        self.all_contacts = all_contacts
-        self.all_velocities = all_velocities
+        # self.all_contacts = all_contacts
+        # self.all_velocities = all_velocities
 
         self.keyids = list(features_data.keys())
         self._split_index = list(self.keyids)
@@ -191,13 +191,13 @@ class KIT(Dataset):
         datastruct = self.transforms.Datastruct(features=features)
         return datastruct
 
-    def _load_contact(self, keyid):
-        contacts = self.all_contacts[keyid]
-        return contacts 
+    # def _load_contact(self, keyid):
+    #     contacts = self.all_contacts[keyid]
+    #     return contacts 
     
-    def _load_velocity(self, keyid):
-        velocities = self.all_velocities[keyid]
-        return velocities
+    # def _load_velocity(self, keyid):
+    #     velocities = self.all_velocities[keyid]
+    #     return velocities
 
     def _load_text(self, keyid):
         sequences = self.texts_data[keyid]
@@ -218,11 +218,11 @@ class KIT(Dataset):
 
         datastruct = self._load_datastruct(keyid, frame_ix)
         text = self._load_text(keyid)
-        contacts = self._load_contact(keyid)
-        velocities = self._load_velocity(keyid)
+        # contacts = self._load_contact(keyid)
+        # velocities = self._load_velocity(keyid)
         element = {"datastruct": datastruct, "text": text,
-                   "length": len(datastruct), "keyid": keyid, 
-                   "contacts": contacts, "velocities":velocities}
+                   "length": len(datastruct), "keyid": keyid} 
+                #    "contacts": contacts, "velocities":velocities}
         return element
 
     def __getitem__(self, index):
@@ -257,18 +257,18 @@ def load_mmm_keyid(keyid, datapath):
     joints = np.array(xyzdata).reshape(-1, 21, 3)
     return joints
 
-def load_contact_keyid(keyid, contact_path):
-    contacts_path = os.path.join(contact_path, (keyid + '_contacts.npz'))
-    dico = np.load(contacts_path)
-    contacts = np.array(dico['contacts']).reshape(-1, 4)
-    velocities = np.array(dico['joints_vel_norm']).reshape(-1, 4)
-    return contacts, velocities
+# def load_contact_keyid(keyid, contact_path):
+#     contacts_path = os.path.join(contact_path, (keyid + '_contacts.npz'))
+#     dico = np.load(contacts_path)
+#     contacts = np.array(dico['contacts']).reshape(-1, 4)
+#     velocities = np.array(dico['joints_vel_norm']).reshape(-1, 4)
+#     return contacts, velocities
 
-def load_velocity_keyid(keyid, datapath):
-    velocities_path = datapath / (keyid + '_velocities.csv')
-    velocities = pandas.read_csv(velocities_path)
-    velocities = np.array(velocities).reshape(-1, 4)
-    return velocities
+# def load_velocity_keyid(keyid, datapath):
+#     velocities_path = datapath / (keyid + '_velocities.csv')
+#     velocities = pandas.read_csv(velocities_path)
+#     velocities = np.array(velocities).reshape(-1, 4)
+#     return velocities
 
 
 def downsample_mmm(joints, *, downsample, framerate):
