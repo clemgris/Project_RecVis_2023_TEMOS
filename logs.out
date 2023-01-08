@@ -1,0 +1,198 @@
+[24/12/22 11:40:55][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 11:46:06][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 11:46:06][__main__][INFO] - C:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\samples\gtest
+[24/12/22 11:46:11][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 11:46:11][__main__][INFO] - Loading data module
+[24/12/22 11:54:21][__main__][INFO] - Interaction script. The result will be saved there: kick
+[24/12/22 11:54:21][__main__][INFO] - The sentence is: A person kicks with the right foot.
+[24/12/22 11:55:00][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 11:55:00][__main__][INFO] - Loading model
+[24/12/22 12:15:00][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 12:15:00][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 12:15:40][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 12:15:40][__main__][INFO] - Loading data module
+[24/12/22 12:18:48][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 12:18:48][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 12:19:48][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 12:19:48][__main__][INFO] - Loading data module
+[24/12/22 14:33:31][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 14:33:31][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 14:33:39][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 14:33:39][__main__][INFO] - Loading data module
+[24/12/22 14:33:56][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 14:33:56][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 14:34:00][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 14:34:00][__main__][INFO] - Loading data module
+[24/12/22 16:02:53][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 16:02:53][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 16:03:00][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 16:03:00][__main__][INFO] - Loading data module
+[24/12/22 16:04:22][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 16:04:22][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 16:04:26][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 16:04:26][__main__][INFO] - Loading data module
+[24/12/22 21:29:55][__main__][INFO] - Sample script. The outputs will be stored in:
+[24/12/22 21:29:55][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[24/12/22 21:30:02][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[24/12/22 21:30:02][__main__][INFO] - Loading data module
+[24/12/22 21:30:02][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[24/12/22 21:30:02][__main__][INFO] - Loading model
+[25/12/22 10:51:35][__main__][INFO] - Sample script. The outputs will be stored in:
+[25/12/22 10:51:35][__main__][INFO] - c:\Users\cgris\OneDrive\Documents\ENPC\4A 2022-2023\S1\OBJECT RECOGNITION\Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[25/12/22 10:51:45][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[25/12/22 10:51:46][__main__][INFO] - Loading data module
+[25/12/22 10:51:46][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[25/12/22 10:51:46][__main__][INFO] - Loading model
+[25/12/22 10:51:50][__main__][INFO] - Model 'temos' loaded
+[25/12/22 11:07:40][__main__][INFO] - Interaction script. The result will be saved there: kick
+[25/12/22 11:07:40][__main__][INFO] - The sentence is: A person kicks with the right foot.
+[25/12/22 11:07:51][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[25/12/22 11:07:51][__main__][INFO] - Loading model
+[25/12/22 11:07:54][__main__][INFO] - Model 'temos' loaded
+[29/12/22 12:20:44][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:20:44][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:22:03][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:22:03][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:22:09][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:22:09][__main__][INFO] - Loading data module
+[29/12/22 12:25:15][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:25:15][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:25:18][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:25:18][__main__][INFO] - Loading data module
+[29/12/22 12:26:05][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:26:05][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:26:08][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:26:08][__main__][INFO] - Loading data module
+[29/12/22 12:27:26][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:27:26][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:27:29][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:27:29][__main__][INFO] - Loading data module
+[29/12/22 12:35:40][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:35:40][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:35:43][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:35:43][__main__][INFO] - Loading data module
+[29/12/22 12:35:58][__main__][INFO] - Interaction script. The result will be saved there: kick
+[29/12/22 12:35:58][__main__][INFO] - The sentence is: A person kicks with the right foot.
+[29/12/22 12:36:01][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:36:01][__main__][INFO] - Loading model
+[29/12/22 12:47:52][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:47:52][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:47:57][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:47:57][__main__][INFO] - Loading data module
+[29/12/22 12:48:43][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:48:43][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:48:46][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:48:46][__main__][INFO] - Loading data module
+[29/12/22 12:51:00][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:51:00][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:51:03][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:51:03][__main__][INFO] - Loading data module
+[29/12/22 12:52:38][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:52:38][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:52:41][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:52:41][__main__][INFO] - Loading data module
+[29/12/22 12:53:10][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:53:10][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:53:12][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:53:12][__main__][INFO] - Loading data module
+[29/12/22 12:54:58][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:54:58][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:55:01][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:55:01][__main__][INFO] - Loading data module
+[29/12/22 12:55:27][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:55:27][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:55:30][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:55:30][__main__][INFO] - Loading data module
+[29/12/22 12:58:04][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:58:04][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:58:07][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:58:07][__main__][INFO] - Loading data module
+[29/12/22 12:58:15][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:58:15][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:58:18][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:58:18][__main__][INFO] - Loading data module
+[29/12/22 12:58:43][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:58:43][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:58:46][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:58:46][__main__][INFO] - Loading data module
+[29/12/22 12:59:11][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:59:11][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:59:14][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:59:14][__main__][INFO] - Loading data module
+[29/12/22 12:59:24][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 12:59:24][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 12:59:27][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 12:59:27][__main__][INFO] - Loading data module
+[29/12/22 13:00:22][__main__][INFO] - Interaction script. The result will be saved there: kick
+[29/12/22 13:00:22][__main__][INFO] - The sentence is: A person kicks with the right foot.
+[29/12/22 13:00:25][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:00:25][__main__][INFO] - Loading model
+[29/12/22 13:00:58][__main__][INFO] - Interaction script. The result will be saved there: kick
+[29/12/22 13:00:58][__main__][INFO] - The sentence is: A person kicks with the right foot.
+[29/12/22 13:01:01][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:01:01][__main__][INFO] - Loading model
+[29/12/22 13:02:39][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:02:39][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:02:42][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:02:42][__main__][INFO] - Loading data module
+[29/12/22 13:12:21][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:12:21][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:12:24][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:12:24][__main__][INFO] - Loading data module
+[29/12/22 13:14:36][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:14:36][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:14:39][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:14:39][__main__][INFO] - Loading data module
+[29/12/22 13:15:43][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:15:43][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:15:46][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:15:46][__main__][INFO] - Loading data module
+[29/12/22 13:15:47][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 13:15:47][__main__][INFO] - Loading model
+[29/12/22 13:17:25][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:17:25][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:17:28][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:17:28][__main__][INFO] - Loading data module
+[29/12/22 13:17:29][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 13:17:29][__main__][INFO] - Loading model
+[29/12/22 13:18:02][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:18:02][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:18:05][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:18:05][__main__][INFO] - Loading data module
+[29/12/22 13:18:05][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 13:18:05][__main__][INFO] - Loading model
+[29/12/22 13:20:42][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:20:42][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:20:46][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:20:46][__main__][INFO] - Loading data module
+[29/12/22 13:20:47][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 13:20:47][__main__][INFO] - Loading model
+[29/12/22 13:20:49][__main__][INFO] - Model 'temos' loaded
+[29/12/22 13:23:32][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 13:23:32][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 13:23:35][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 13:23:35][__main__][INFO] - Loading data module
+[29/12/22 13:23:36][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 13:23:36][__main__][INFO] - Loading model
+[29/12/22 13:23:37][__main__][INFO] - Model 'temos' loaded
+[29/12/22 17:01:07][__main__][INFO] - Sample script. The outputs will be stored in:
+[29/12/22 17:01:07][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[29/12/22 17:01:12][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[29/12/22 17:01:12][__main__][INFO] - Loading data module
+[29/12/22 17:01:13][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[29/12/22 17:01:13][__main__][INFO] - Loading model
+[29/12/22 17:01:15][__main__][INFO] - Model 'temos' loaded
+[04/01/23 18:41:10][__main__][INFO] - Sample script. The outputs will be stored in:
+[04/01/23 18:41:10][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[04/01/23 18:41:14][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[04/01/23 18:41:14][__main__][INFO] - Loading data module
+[04/01/23 18:41:15][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[04/01/23 18:41:15][__main__][INFO] - Loading model
+[04/01/23 18:41:17][__main__][INFO] - Model 'temos' loaded
+[04/01/23 18:42:24][__main__][INFO] - Sample script. The outputs will be stored in:
+[04/01/23 18:42:24][__main__][INFO] - E:\RegVis_Project\TEMOS\pretrained_models\kit-mmm-xyz\3l49g7hv\samples\gtest
+[04/01/23 18:42:28][lightning_lite.utilities.seed][INFO] - Global seed set to 1234
+[04/01/23 18:42:28][__main__][INFO] - Loading data module
+[04/01/23 18:42:28][__main__][INFO] - Data module 'kit-mmm-xyz' loaded
+[04/01/23 18:42:28][__main__][INFO] - Loading model
+[04/01/23 18:42:30][__main__][INFO] - Model 'temos' loaded
