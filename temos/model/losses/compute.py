@@ -98,25 +98,25 @@ class TemosComputeLosses(Module):
           if contact_motions_i.shape==contacts_ref_i.shape:
             bce_motion = bce(contact_motions_i, contacts_ref_i)
           else :
-            bce_motion=torch.Tensor(0.)
+            bce_motion=torch.zeros(1)[0]
             print("skipping mismatch shape contact motion, shape : ", contact_motions_i.shape, contacts_ref_i.shape)
 
           if contact_text_i.shape==contacts_ref_i.shape:
             bce_text = bce(contact_text_i, contacts_ref_i)
           else :
-            bce_text=torch.Tensor(0.)
+            bce_text=torch.zeros(1)[0]
             print("skipping mismatch shape contact text, shape : ", contact_text_i.shape, contacts_ref_i.shape)
           
           if contact_motions_i.shape==velocities_i.shape:
             vel_motion = (contact_motions_i*velocities_i).sum()
           else:
-            vel_motion=torch.Tensor(0.)
+            vel_motion=torch.zeros(1)[0]
             print("skipping mismatch shape vel motion, shape : ", contact_motions_i.shape, velocities_i.shape)
 
           if contact_text_i.shape==velocities_i.shape:
             vel_text = (contact_text_i*velocities_i).sum()
           else:
-            vel_text=torch.Tensor(0.)
+            vel_text=torch.zeros(1)[0]
             print("skipping mismatch shape vel text, shape : ", contact_text_i.shape, velocities_i.shape)
 
           total += 0.01*(bce_motion + bce_text + vel_motion + vel_text)
