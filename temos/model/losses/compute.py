@@ -82,6 +82,8 @@ class TemosComputeLosses(Module):
           velocities_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)[idx-4]
         #   print('velocities_i.shape', velocities_i.shape)
           
+          print(contacts_motion.shape)
+
           contact_motions_i = contacts_motion[i][idx]
           contact_text_i = contacts_text[i][idx]
           contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
@@ -93,7 +95,7 @@ class TemosComputeLosses(Module):
           else :
             bce_motion=torch.Tensor(0.)
             print("skipping mismatch shape contact motion, shape : ", contact_motions_i.shape, contacts_ref_i.shape)
-            
+
           if contact_text_i.shape==contacts_ref_i.shape:
             bce_text = bce(contact_text_i, contacts_ref_i)
           else :
