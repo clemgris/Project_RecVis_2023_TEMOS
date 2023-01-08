@@ -82,7 +82,7 @@ class TemosComputeLosses(Module):
           velocities_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)[idx-4]
         #   print('velocities_i.shape', velocities_i.shape)
           
-          print(contacts_motion.shape)
+          print(contacts_motion.shape, i)
 
           contact_motions_i = contacts_motion[i][idx]
           contact_text_i = contacts_text[i][idx]
