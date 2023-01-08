@@ -78,19 +78,20 @@ class TemosComputeLosses(Module):
         #   print('original_length', original_length)
           idx = np.arange((int(0.1*original_length)), (int(0.9*original_length))+1)[:n]
         #   print('len(idx)', len(idx))
-          feats_i = ds_motion.joints[i,:original_length,[14,19,15,20],:]
-        #   print('shape(feats_i):', (feats_i).shape )
-          velocities_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)[idx-4]
-        #   print('velocities_i.shape', velocities_i.shape)
           
           if max(idx) < contacts_motion.shape[1]:
             contact_motions_i = contacts_motion[i][idx]
             contact_text_i = contacts_text[i][idx]
             contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
+            feats_i = ds_motion.joints[i,:original_length,[14,19,15,20],:]
+            #   print('shape(feats_i):', (feats_i).shape )
+            velocities_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)[idx-4]
+            #   print('velocities_i.shape', velocities_i.shape)
           else:
             contact_motions_i = torch.zeros(1)
             contact_text_i = torch.zeros(1)
             contacts_ref_i = torch.zeros(2)
+            velocities_i = torch.zeros(3)
             print("Skipping shape mismatch in idx", max(idx), contacts_motion.shape[1])
           
           # velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
