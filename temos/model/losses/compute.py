@@ -66,67 +66,60 @@ class TemosComputeLosses(Module):
 
     def update(self, ds_text=None, ds_motion=None, ds_ref=None,
                lat_text=None, lat_motion=None, dis_text=None,
-               dis_motion=None, dis_ref=None, contacts_motion=None, contacts_text=None, contacts_ref=None, velocities_ref=None):
+               dis_motion=None, dis_ref=None, contacts_motion=None, 
+               contacts_text=None, contacts_ref=None, velocities_ref=None):
         total: float = 0.0
-        total += torch.sum(0.0 * contacts_motion)
-
+        
         bce = torch.nn.BCELoss()
         device = ds_motion.jfeats.device
-        for i in range(len(contacts_ref)):
-          n = len(contacts_ref[i])
-          original_length = int(np.floor(n/0.8))
-        #   print('original_length', original_length)
-          idx = np.arange((int(0.1*original_length)), (int(0.9*original_length))+1)[:n]
-        #   print('len(idx)', len(idx))
+
+        for i,_ in enumerate(contacts_ref):
           
-          if max(idx) < contacts_motion.shape[1]:
-            contact_motions_i = contacts_motion[i][idx]
-            contact_text_i = contacts_text[i][idx]
-            contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
-            feats_i = ds_motion.joints[i,:original_length,[14,19,15,20],:]
-            #   print('shape(feats_i):', (feats_i).shape )
-            velocities_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)[idx-4]
-            #   print('velocities_i.shape', velocities_i.shape)
-          else:
-            contact_motions_i = torch.zeros(1)
-            contact_text_i = torch.zeros(1)
-            contacts_ref_i = torch.zeros(2)
-            velocities_i = torch.zeros(3)
-            # print("Skipping shape mismatch in idx", max(idx), contacts_motion.shape[1])
+          # Contact
+          contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
+          n_contacts = contacts_ref_i.shape[0]
+
+          contact_motions_i = contacts_motion[i][:n_contacts]
+          contact_text_i = contacts_text[i][:n_contacts]
+
+          # Velocities
+          velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
+
+          # Motion
+          # Features of the feet in mmm motion
+          feats_i = ds_motion.joints[i,:,[14,19,15,20],:]
+          velocities_motion_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)
+
+          # Text
+          # Features of the feet in mmm motion
+          feats_i = ds_text.joints[i,:,[14,19,15,20],:]
+          velocities_text_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)
+
+          # Remove padding
+          velocities_motion_i = velocities_motion_i[:n_contacts-2]
+          velocities_text_i = velocities_text_i[:n_contacts-2]
+
+          # Print
+          #print()
+          #print('contacts_ref_shape', contacts_ref_i.shape)
+          #print('contact_motion_shape', contact_motions_i.shape)
+          #print('contact_text_shape', contact_text_i.shape)
+          #print()
+          #print('velocities_ref_i.shape', velocities_ref_i.shape)
+          #print('velocities_motion_i.shape', velocities_motion_i.shape)
+          #print('velocities_text_i.shape', velocities_text_i.shape)
+
+          # Contact losses
+          bce_contact_motion = bce(contact_motions_i, contacts_ref_i)
+          bce_contact_text = bce(contact_text_i, contacts_ref_i)
+
+          #bce_velocity_motion = bce(velocities_motion_i, velocities_ref_i)
+          #bce_vetocity_text = bce(velocities_text_i, velocities_ref_i)
           
-          # velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
-        #   print('contacts_shape', contact_motions_i.shape, contact_text_i.shape, contacts_ref_i.shape)
+          vel_motion = (contact_motions_i[1:-1]*velocities_text_i).sum()
+          vel_text = (contact_text_i[1:-1]*velocities_text_i).sum()
 
-          if contact_motions_i.shape==contacts_ref_i.shape:
-            bce_motion = bce(contact_motions_i, contacts_ref_i)
-            total += 0.01*bce_motion
-          else :
-            bce_motion=torch.zeros(1)[0]
-            # print("skipping mismatch shape contact motion, shape : ", contact_motions_i.shape, contacts_ref_i.shape)
-
-          if contact_text_i.shape==contacts_ref_i.shape:
-            bce_text = bce(contact_text_i, contacts_ref_i)
-            total += 0.01 * bce_text
-          else :
-            bce_text=torch.zeros(1)[0]
-            # print("skipping mismatch shape contact text, shape : ", contact_text_i.shape, contacts_ref_i.shape)
-          
-          if contact_motions_i.shape==velocities_i.shape:
-            vel_motion = (contact_motions_i*velocities_i).sum()
-            total += 0.01 * vel_motion
-          else:
-            vel_motion=torch.zeros(1)[0]
-            # print("skipping mismatch shape vel motion, shape : ", contact_motions_i.shape, velocities_i.shape)
-
-          if contact_text_i.shape==velocities_i.shape:
-            vel_text = (contact_text_i*velocities_i).sum()
-            total += 0.01 * vel_text
-          else:
-            vel_text=torch.zeros(1)[0]
-            # print("skipping mismatch shape vel text, shape : ", contact_text_i.shape, velocities_i.shape)
-
-        #   total += 0.01*(bce_motion + bce_text + vel_motion + vel_text)
-
+          total += 0.000001*(bce_contact_motion + bce_contact_text + vel_motion + vel_text)
 
         if self.mode == "xyz" or self.force_loss_on_jfeats:
             if not self.ablation_no_motionencoder:

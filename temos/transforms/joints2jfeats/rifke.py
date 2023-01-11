@@ -119,7 +119,7 @@ class Rifke(Joints2Jfeats):
         poses[..., [0, 2]] += trajectory[..., None, :]
         return poses
 
-    def extract(self, features: Tensor) -> tuple[Tensor]:
+    def extract(self, features: Tensor) -> tuple:
         root_y = features[..., 0]
         poses_features = features[..., 1:-3]
         vel_angles = features[..., -3]
