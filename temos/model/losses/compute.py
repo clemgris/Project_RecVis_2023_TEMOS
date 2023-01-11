@@ -113,8 +113,8 @@ class TemosComputeLosses(Module):
           bce_contact_motion = bce(contact_motions_i, contacts_ref_i)
           bce_contact_text = bce(contact_text_i, contacts_ref_i)
 
-          bce_velocity_motion = bce(velocities_motion_i, velocities_ref_i)
-          bce_vetocity_text = bce(velocities_text_i, velocities_ref_i)
+        #   bce_velocity_motion = bce(velocities_motion_i, velocities_ref_i)
+        #   bce_vetocity_text = bce(velocities_text_i, velocities_ref_i)
           
           vel_motion = (contact_motions_i[1:-1]*velocities_text_i).sum()
           vel_text = (contact_text_i[1:-1]*velocities_text_i).sum()
