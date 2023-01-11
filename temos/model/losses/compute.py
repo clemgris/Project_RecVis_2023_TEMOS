@@ -71,24 +71,18 @@ class TemosComputeLosses(Module):
         total: float = 0.0
         
         bce = torch.nn.BCELoss()
-        device = ds_motion.jfeats.device
-
-        print('device', device)
 
         for i,_ in enumerate(contacts_ref):
           
           # Contact
-          print("contact device", contacts_ref[i].device)
-        #   print("contact device", torch.Tensor(contacts_ref[i]).device)
-
-          contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
+          contacts_ref_i = contacts_ref[i]
           n_contacts = contacts_ref_i.shape[0]
 
           contact_motions_i = contacts_motion[i][:n_contacts]
           contact_text_i = contacts_text[i][:n_contacts]
 
           # Velocities
-          velocities_ref_i = torch.Tensor(velocities_ref[i]).to(device)
+          velocities_ref_i = velocities_ref[i]
 
           # Motion
           # Features of the feet in mmm motion
@@ -118,8 +112,8 @@ class TemosComputeLosses(Module):
           bce_contact_motion = bce(contact_motions_i, contacts_ref_i)
           bce_contact_text = bce(contact_text_i, contacts_ref_i)
 
-          #bce_velocity_motion = bce(velocities_motion_i, velocities_ref_i)
-          #bce_vetocity_text = bce(velocities_text_i, velocities_ref_i)
+          bce_velocity_motion = bce(velocities_motion_i, velocities_ref_i)
+          bce_vetocity_text = bce(velocities_text_i, velocities_ref_i)
           
           vel_motion = (contact_motions_i[1:-1]*velocities_text_i).sum()
           vel_text = (contact_text_i[1:-1]*velocities_text_i).sum()
