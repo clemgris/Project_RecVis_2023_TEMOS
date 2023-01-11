@@ -73,6 +73,8 @@ class TemosComputeLosses(Module):
         bce = torch.nn.BCELoss()
         device = ds_motion.jfeats.device
 
+        print('device', device)
+
         for i,_ in enumerate(contacts_ref):
           
           # Contact
