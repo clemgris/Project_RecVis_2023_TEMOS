@@ -78,8 +78,8 @@ class TemosComputeLosses(Module):
         for i,_ in enumerate(contacts_ref):
           
           # Contact
-          
-          print("contact device", torch.Tensor(contacts_ref[i]).device)
+          print("contact device", contacts_ref[i].device)
+        #   print("contact device", torch.Tensor(contacts_ref[i]).device)
 
           contacts_ref_i = torch.Tensor(contacts_ref[i]).to(device)
           n_contacts = contacts_ref_i.shape[0]
