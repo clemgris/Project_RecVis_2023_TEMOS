@@ -88,12 +88,12 @@ class TemosComputeLosses(Module):
           # Motion
           # Features of the feet in mmm motion
           feats_i = ds_motion.joints[i,:,[14,19,15,20],:]
-          velocities_motion_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)
+          velocities_motion_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1).to(device)
 
           # Text
           # Features of the feet in mmm motion
           feats_i = ds_text.joints[i,:,[14,19,15,20],:]
-          velocities_text_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1)
+          velocities_text_i = torch.norm(((feats_i[2:]-feats_i[:-2])/2), dim=-1).to(device)
 
           # Remove padding
           velocities_motion_i = velocities_motion_i[:n_contacts-2]
