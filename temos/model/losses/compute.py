@@ -71,18 +71,19 @@ class TemosComputeLosses(Module):
         total: float = 0.0
         
         bce = torch.nn.BCELoss()
+        device = ds_motion.jfeats.device
 
         for i,_ in enumerate(contacts_ref):
           
           # Contact
-          contacts_ref_i = contacts_ref[i]
+          contacts_ref_i = contacts_ref[i].to(device)
           n_contacts = contacts_ref_i.shape[0]
 
           contact_motions_i = contacts_motion[i][:n_contacts]
           contact_text_i = contacts_text[i][:n_contacts]
 
           # Velocities
-          velocities_ref_i = velocities_ref[i]
+          velocities_ref_i = velocities_ref[i].to(device)
 
           # Motion
           # Features of the feet in mmm motion
