@@ -146,7 +146,11 @@ class KIT(Dataset):
 
             contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
             contacts, velocities = load_contact_keyid(keyid, contact_path)
-
+            
+            # Padd velocities
+            velocities_reshape = np.zeros(contacts.shape)
+            velocities_reshape[1:-1,:] = velocities
+            
             print("Init contact", contacts.shape)
             print("Init vel", velocities.shape)
 
@@ -155,8 +159,7 @@ class KIT(Dataset):
             contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate)
             print("Contacts dowsample", contacts.shape, duration_contacts)
 
-            velocities_reshape = np.zeros(contacts.shape)
-            velocities_reshape[1:-1,:] = velocities
+
             velocities_reshape, duration_vel_reshape =  downsample_mmm(velocities, downsample=self.downsample, framerate=framerate)
             print("Vel reshape dowsample", velocities_reshape.shape, duration_vel_reshape)
             
