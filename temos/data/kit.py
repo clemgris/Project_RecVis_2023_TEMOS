@@ -147,7 +147,7 @@ class KIT(Dataset):
             contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
             contacts, velocities = load_contact_keyid(keyid, contact_path)
             
-            assert(contacts.shape[0] == velocities.shae[0]+2)
+            assert(contacts.shape[0] == velocities.shape[0]+2)
 
             # Padd velocities
             velocities_padd = np.zeros(contacts.shape)
