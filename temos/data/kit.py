@@ -156,7 +156,7 @@ class KIT(Dataset):
             # Downsample
             joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate)
             contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate)
-            velocities_padd, duration_vel_padd =  downsample_mmm(velocities, downsample=self.downsample, framerate=framerate)
+            velocities_padd, duration_vel_padd =  downsample_mmm(velocities_padd, downsample=self.downsample, framerate=framerate)
              
             # Remove padding
             velocities, duration_vel = velocities_padd[-1:1,:], duration_vel_padd - 2
