@@ -145,12 +145,12 @@ class KIT(Dataset):
             joints = load_mmm_keyid(keyid, datapath)
 
             contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
-            contacts, velocities, fps = load_contact_keyid(keyid, contact_path)
+            contacts, velocities = load_contact_keyid(keyid, contact_path)
 
             # Downsample
-            joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate, last_framerate=fps)
-            contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate, last_framerate=fps)
-            velocities, duration_vel =  downsample_mmm(velocities, downsample=self.downsample, framerate=framerate, last_framerate=fps)
+            joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate)
+            contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate)
+            velocities, duration_vel =  downsample_mmm(velocities, downsample=self.downsample, framerate=framerate)
 
             # Assert no shape mismatch
             assert(duration == duration_contacts)
@@ -273,8 +273,7 @@ def load_contact_keyid(keyid, contact_path):
     dico = np.load(contacts_path)
     contacts = np.array(dico['contacts']).reshape(-1, 4)
     velocities = np.array(dico['joints_vel_norm']).reshape(-1, 4)
-    fps = dico['fps']
-    return contacts, velocities, fps
+    return contacts, velocities
 
 def load_velocity_keyid(keyid, datapath):
     velocities_path = datapath / (keyid + '_velocities.csv')
@@ -283,9 +282,9 @@ def load_velocity_keyid(keyid, datapath):
     return velocities
 
 
-def downsample_mmm(joints, *, downsample, framerate, last_framerate):
+def downsample_mmm(joints, *, downsample, framerate):
     nframes_total = len(joints)
-    #last_framerate = 100
+    last_framerate = 100
 
     if downsample:
         frames = subsample(nframes_total, last_framerate=last_framerate, new_framerate=framerate)
