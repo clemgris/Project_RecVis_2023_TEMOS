@@ -83,10 +83,10 @@ class KIT(Dataset):
         keyids = get_split_keyids(path=splitpath, split=split)
 
         print(len(keyids))
-
-        sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
-        sub_list = np.load(sub_list_path)['list']
-        keyids = list(set(keyids).intersection(set(sub_list)))
+        if self.split != 'test':
+            sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
+            sub_list = np.load(sub_list_path)['list']
+            keyids = list(set(keyids).intersection(set(sub_list)))
 
         print(len(keyids))
 
@@ -142,28 +142,31 @@ class KIT(Dataset):
             # read xyz joints in MMM format
 #            else:
 
+            # Read xyz joints in MMM format
             joints = load_mmm_keyid(keyid, datapath)
-
-            contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
-            contacts, velocities = load_contact_keyid(keyid, contact_path)
-            
-            assert(contacts.shape[0] == velocities.shape[0]+2)
-
-            # Padd velocities
-            velocities_padd = np.zeros(contacts.shape)
-            velocities_padd[1:-1,:] = velocities
-
             # Downsample
             joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate)
-            contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate)
-            velocities_padd, duration_vel_padd =  downsample_mmm(velocities_padd, downsample=self.downsample, framerate=framerate)
-             
-            # Remove padding
-            velocities, duration_vel = velocities_padd[-1:1,:], duration_vel_padd - 2
 
-            # Assert no shape mismatch
-            assert(duration == duration_contacts)
-            assert(duration == duration_vel+2)
+            if self.split != 'test':
+                contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
+                contacts, velocities = load_contact_keyid(keyid, contact_path)
+                
+                assert(contacts.shape[0] == velocities.shape[0]+2)
+
+                # Padd velocities
+                velocities_padd = np.zeros(contacts.shape)
+                velocities_padd[1:-1,:] = velocities
+
+                # Downsample
+                contacts, duration_contacts = downsample_mmm(contacts, downsample=self.downsample, framerate=framerate)
+                velocities_padd, duration_vel_padd =  downsample_mmm(velocities_padd, downsample=self.downsample, framerate=framerate)
+                
+                # Remove padding
+                velocities, duration_vel = velocities_padd[-1:1,:], duration_vel_padd - 2
+
+                # Assert no shape mismatch
+                assert(duration == duration_contacts)
+                assert(duration == duration_vel+2)
 
             if split != "test" and not tiny:
                 # Accept or not the sample, based on the duration
@@ -185,8 +188,9 @@ class KIT(Dataset):
             features_data[keyid] = features
             texts_data[keyid] = anndata
             durations[keyid] = duration
-            all_contacts[keyid] = contacts
-            all_velocities[keyid] = velocities
+            if self.split != 'test':
+                all_contacts[keyid] = contacts
+                all_velocities[keyid] = velocities
 
         if load_amass_data and not tiny:
             percentage = 100 * bad_smpl / (bad_smpl + good_smpl)
@@ -199,8 +203,9 @@ class KIT(Dataset):
 
         self.features_data = features_data
         self.texts_data = texts_data
-        self.all_contacts = all_contacts
-        self.all_velocities = all_velocities
+        if self.split != 'test':
+            self.all_contacts = all_contacts
+            self.all_velocities = all_velocities
 
         self.keyids = list(features_data.keys())
         self._split_index = list(self.keyids)
@@ -239,11 +244,15 @@ class KIT(Dataset):
 
         datastruct = self._load_datastruct(keyid, frame_ix)
         text = self._load_text(keyid)
-        contacts = self._load_contact(keyid)
-        velocities = self._load_velocity(keyid)
-        element = {"datastruct": datastruct, "text": text,
-                   "length": len(datastruct), "keyid": keyid, 
-                   "contacts": contacts, "velocities":velocities}
+        if self.split != 'test':
+            contacts = self._load_contact(keyid)
+            velocities = self._load_velocity(keyid)
+            element = {"datastruct": datastruct, "text": text,
+                    "length": len(datastruct), "keyid": keyid, 
+                    "contacts": contacts, "velocities":velocities}
+        else:
+            element = {"datastruct": datastruct, "text": text,
+            "length": len(datastruct), "keyid": keyid}
         return element
 
     def __getitem__(self, index):
