@@ -88,7 +88,7 @@ class ComputeMetrics(Metric):
         foot_sliding_metrics = {metric: getattr(self, metric) / count_foot for metric in self.foot_sliding_metrics}
 
         # Compute average of foot sliding metrics
-        foot_sliding_metrics["contact_weighted_velocity_mean"] = self.contact_weighted_velocity.mean() / count_foot
+        foot_sliding_metrics["contact_weighted_velocity_mean"] = self.contact_weighted_velocity / count_foot
 
         ## Remove arrays
         foot_sliding_metrics.pop("contact_weighted_velocity")
@@ -99,7 +99,7 @@ class ComputeMetrics(Metric):
         self.count += sum(lengths)
         self.count_seq += len(lengths)
         self.count_foot += len(lengths)
-        
+
         jts_text, poses_text, root_text, traj_text = self.transform(jts_text, lengths)
         jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref, lengths)
 
