@@ -170,7 +170,8 @@ def evaluate(cfg: DictConfig) -> None:
             # Load reference joints in MMM format
             ref_joints = load_mmm_keyid(keyid, datapath)
             ref_joints = torch.from_numpy(ref_joints).float()
-            ref_contacts = load_contact_keyid(keyid, datapath)
+            contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
+            ref_contacts = load_contact_keyid(keyid, contact_path)
         else:
             ref_smpl_data, success = load_amass_keyid(keyid, amass_path, correspondances=kitml_correspondances)
             if not success:
