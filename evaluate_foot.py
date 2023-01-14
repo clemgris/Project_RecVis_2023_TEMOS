@@ -220,7 +220,7 @@ def evaluate(cfg: DictConfig) -> None:
         save_metric(save_path, metrics)
         logger.info("Done.")
 
-        for key in ["APE_root", "AVE_root", 'contact_weighted_velocity']:
+        for key in ["APE_root", "AVE_root"]:
             logger.info(f"{key}: {metrics[key]}")
     else:
         # best metrics
@@ -242,7 +242,7 @@ def evaluate(cfg: DictConfig) -> None:
 
         for name, metrics in [("avg", avg_metrics), ("best", best_metrics), ("worst", worst_metrics)]:
             logger.info(f"{name}")
-            for key in ["APE_root", "AVE_root", 'foot_sliding']:
+            for key in ["APE_root", "AVE_root"]:
                 logger.info(f"  {key}: {metrics[key]}")
 
 
