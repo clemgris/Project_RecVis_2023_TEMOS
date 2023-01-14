@@ -164,6 +164,7 @@ def evaluate(cfg: DictConfig) -> None:
     # keep infos for computing
     all_infos = []
     for keyid in keyids:
+        print(keyid)
         # Load GT data
         # load mmm
         if not amass:
