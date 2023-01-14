@@ -58,6 +58,8 @@ class ComputeMetrics(Metric):
         # All metric
         self.metrics = self.APE_metrics + self.AVE_metrics + self.foot_sliding_metrics
 
+        print(self.count, self.count_seq)
+
     def compute(self):
         count = self.count
         APE_metrics = {metric: getattr(self, metric) / count for metric in self.APE_metrics}
