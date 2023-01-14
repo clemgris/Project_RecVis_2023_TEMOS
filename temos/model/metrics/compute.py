@@ -58,7 +58,6 @@ class ComputeMetrics(Metric):
         # All metric
         self.metrics = self.APE_metrics + self.AVE_metrics + self.foot_sliding_metrics
 
-        print(self.count, self.count_seq)
 
     def compute(self):
         count = self.count
@@ -96,6 +95,8 @@ class ComputeMetrics(Metric):
         return {**APE_metrics, **AVE_metrics, **foot_sliding_metrics}
 
     def update(self, jts_text: Tensor, jts_ref: Tensor, lengths: List[int], ref_contacts: Tensor):
+        print(self.count, self.count_seq)
+
         self.count += sum(lengths)
         self.count_seq += len(lengths)
         self.count_foot += len(lengths)
