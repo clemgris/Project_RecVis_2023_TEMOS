@@ -52,8 +52,11 @@ class ComputeMetrics(Metric):
         self.add_state("AVE_joints", default=torch.zeros(21), dist_reduce_fx="sum")
         self.AVE_metrics = ["AVE_root", "AVE_traj", "AVE_pose", "AVE_joints"]
 
+        # foot sliding
+        self.add_state("contact_weighted_velocity", default=torch.zeros(4))
+        self.foot_sliding_metrics = ["contact_weighted_velocity"]
         # All metric
-        self.metrics = self.APE_metrics + self.AVE_metrics
+        self.metrics = self.APE_metrics + self.AVE_metrics + self.foot_sliding_metrics
 
     def compute(self):
         count = self.count
@@ -77,15 +80,30 @@ class ComputeMetrics(Metric):
         # Remove arrays
         AVE_metrics.pop("AVE_pose")
         AVE_metrics.pop("AVE_joints")
-        
-        return {**APE_metrics, **AVE_metrics}
 
-    def update(self, jts_text: Tensor, jts_ref: Tensor, lengths: List[int]):
+        ## Compute average of foot_sliding
+        count_foot = self.count_foot
+        foot_sliding_metrics = {metric: getattr(self, metric) / count_foot for metric in self.foot_sliding_metrics}
+
+        # Compute average of foot sliding metrics
+        foot_sliding_metrics["contact_weighted_velocity_mean"] = self.contact_weighted_velocity.mean() / count_foot
+
+        ## Remove arrays
+        foot_sliding_metrics.pop("contact_weighted_velocity")
+        
+        return {**APE_metrics, **AVE_metrics, **foot_sliding_metrics}
+
+    def update(self, jts_text: Tensor, jts_ref: Tensor, lengths: List[int], ref_contacts: Tensor):
         self.count += sum(lengths)
         self.count_seq += len(lengths)
+        self.count_foot += len(lengths)
 
         jts_text, poses_text, root_text, traj_text = self.transform(jts_text, lengths)
         jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref, lengths)
+
+        feet = jts_text[:,[14,19,15,20],:]
+        jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
+        print("jts_text_velocity shape:", jts_text_velocity.shape)
 
         for i in range(len(lengths)):
             self.APE_root += l2_norm(root_text[i], root_ref[i], dim=1).sum()
@@ -108,6 +126,8 @@ class ComputeMetrics(Metric):
             jts_sigma_text = variance(jts_text[i], lengths[i], dim=0)
             jts_sigma_ref = variance(jts_ref[i], lengths[i], dim=0)
             self.AVE_joints += l2_norm(jts_sigma_text, jts_sigma_ref, dim=1)
+
+            self.contact_weighted_velocity += ref_contacts[i] * jts_text_velocity[i]
 
     def transform(self, joints: Tensor, lengths):
         features = self.rifke(joints)
