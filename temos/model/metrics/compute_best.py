@@ -22,8 +22,8 @@ class ComputeMetricsBest(ComputeMetrics):
 
             feet = jts_text[0][:,[14,19,15,20],:]
             jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
-        
-            ref_contacts = torch.Tensor(ref_contacts_all[index])[:int(lengths[index])]
+
+            ref_contacts = torch.Tensor(ref_contacts_all[index])[:(lengths[index])[0]]
 
             mets = []
             for i in range(len(lengths[index])):
