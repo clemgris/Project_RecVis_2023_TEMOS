@@ -105,8 +105,8 @@ class ComputeMetrics(Metric):
 
         feet = jts_text[0][:,[14,19,15,20],:]
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
-        print(ref_contacts.shape)
-        print(jts_text_velocity.shape)
+        ref_contacts = torch.Tensor(ref_contacts)
+
 
         for i in range(len(lengths)):
             self.APE_root += l2_norm(root_text[i], root_ref[i], dim=1).sum()
@@ -130,7 +130,7 @@ class ComputeMetrics(Metric):
             jts_sigma_ref = variance(jts_ref[i], lengths[i], dim=0)
             self.AVE_joints += l2_norm(jts_sigma_text, jts_sigma_ref, dim=1)
 
-            self.contact_weighted_velocity += ref_contacts[i] * jts_text_velocity[i]
+            self.contact_weighted_velocity += (ref_contacts[i] * jts_text_velocity[i][1:-1]).sum(0)
 
     def transform(self, joints: Tensor, lengths):
         features = self.rifke(joints)
