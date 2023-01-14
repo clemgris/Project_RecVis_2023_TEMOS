@@ -107,6 +107,10 @@ class ComputeMetrics(Metric):
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
         ref_contacts = torch.Tensor(ref_contacts)
 
+        print(jts_ref.shape)
+        print(jts_text_velocity.shape)
+        print(ref_contacts.shape)
+
 
         for i in range(len(lengths)):
             self.APE_root += l2_norm(root_text[i], root_ref[i], dim=1).sum()
