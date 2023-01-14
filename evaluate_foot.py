@@ -202,6 +202,7 @@ def evaluate(cfg: DictConfig) -> None:
             if onesample:
                 # Compute part of the metrics
                 CMetrics.update(model_joints[None], ref_joints[None], [length], ref_contacts)
+                ##test test test
             else:
                 CMetrics_avg[index].update(model_joints[None], ref_joints[None], [length], ref_contacts)
                 # keep them all to compute the best one
