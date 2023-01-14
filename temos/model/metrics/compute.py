@@ -103,7 +103,7 @@ class ComputeMetrics(Metric):
         jts_text, poses_text, root_text, traj_text = self.transform(jts_text, lengths)
         jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref, lengths)
 
-        feet = jts_text[0,:,[14,19,15,20],:]
+        feet = jts_text[0][:,[14,19,15,20],:]
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
         print(ref_contacts.shape)
         print(jts_text_velocity.shape)
