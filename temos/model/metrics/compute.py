@@ -88,7 +88,8 @@ class ComputeMetrics(Metric):
         foot_sliding_metrics = {metric: getattr(self, metric) / count_foot for metric in self.foot_sliding_metrics}
 
         # Compute average of foot sliding metrics
-        foot_sliding_metrics["contact_weighted_velocity_mean"] = self.contact_weighted_velocity / count_foot
+        for i, str_i in enumerate(['LF', 'RF', 'LTB', 'RTB']):
+            foot_sliding_metrics["contact_weighted_velocity_"+str_i] = self.contact_weighted_velocity[i] / count_foot
 
         ## Remove arrays
         foot_sliding_metrics.pop("contact_weighted_velocity")
