@@ -130,7 +130,7 @@ class ComputeMetrics(Metric):
             jts_sigma_ref = variance(jts_ref[i], lengths[i], dim=0)
             self.AVE_joints += l2_norm(jts_sigma_text, jts_sigma_ref, dim=1)
 
-            self.contact_weighted_velocity += (ref_contacts[i] * jts_text_velocity[i][1:-1]).sum(0)
+            self.contact_weighted_velocity += (ref_contacts * jts_text_velocity[1:-1]).sum(0)
 
     def transform(self, joints: Tensor, lengths):
         features = self.rifke(joints)
