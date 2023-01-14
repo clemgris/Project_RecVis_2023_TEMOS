@@ -103,12 +103,10 @@ class ComputeMetrics(Metric):
         jts_text, poses_text, root_text, traj_text = self.transform(jts_text, lengths)
         jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref, lengths)
 
-        print(len(jts_text))
-        print(jts_text[0].shape)
-        print(jts_text.shape)
-        feet = jts_text[:,[14,19,15,20],:]
+        feet = jts_text[0,:,[14,19,15,20],:]
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
-        print("jts_text_velocity shape:", jts_text_velocity.shape)
+        print(ref_contacts.shape)
+        print(jts_text_velocity.shape)
 
         for i in range(len(lengths)):
             self.APE_root += l2_norm(root_text[i], root_ref[i], dim=1).sum()
