@@ -243,7 +243,7 @@ def evaluate(cfg: DictConfig) -> None:
 
         for name, metrics in [("avg", avg_metrics), ("best", best_metrics), ("worst", worst_metrics)]:
             logger.info(f"{name}")
-            for key in ["APE_root", "AVE_root", 'foot_sliding']:
+            for key in ["APE_root", "AVE_root", 'contact_weighted_velocity']:
                 logger.info(f"  {key}: {metrics[key]}")
 
 

@@ -99,22 +99,13 @@ class ComputeMetrics(Metric):
         self.count += sum(lengths)
         self.count_seq += len(lengths)
         self.count_foot += len(lengths)
-
-        print(jts_ref[0].shape)
-        print(lengths)
+        
         jts_text, poses_text, root_text, traj_text = self.transform(jts_text, lengths)
         jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref, lengths)
-        print(jts_ref[0].shape)
-
 
         feet = jts_text[0][:,[14,19,15,20],:]
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
         ref_contacts = torch.Tensor(ref_contacts)[:lengths[0]]
-
-        print(len(jts_ref))
-        print(jts_ref[0].shape)
-        print(jts_text_velocity.shape)
-        print(ref_contacts.shape)
 
 
         for i in range(len(lengths)):
