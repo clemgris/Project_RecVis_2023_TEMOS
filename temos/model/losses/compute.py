@@ -119,7 +119,7 @@ class TemosComputeLosses(Module):
           vel_motion = (contact_motions_i[1:-1]*velocities_text_i).sum()
           vel_text = (contact_text_i[1:-1]*velocities_text_i).sum()
 
-          total += 0.000001*(bce_contact_motion + bce_contact_text + vel_motion + vel_text)
+          total += 0.000003*(bce_contact_motion + bce_contact_text + vel_motion + vel_text)
         #   total += 0.0*(bce_contact_motion + bce_contact_text + vel_motion + vel_text)
 
         if self.mode == "xyz" or self.force_loss_on_jfeats:
