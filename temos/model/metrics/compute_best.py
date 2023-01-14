@@ -9,15 +9,20 @@ from .compute import ComputeMetrics, l2_norm, variance
 
 
 class ComputeMetricsBest(ComputeMetrics):
-    def update(self, jts_text_: List[Tensor], jts_ref_: List[Tensor], lengths: List[List[int]]):
+    def update(self, jts_text_: List[Tensor], jts_ref_: List[Tensor], lengths: List[List[int]], ref_contacts_all):
         self.count += sum(lengths[0])
         self.count_seq += len(lengths[0])
+        self.count_foot += sum(lengths[0])
 
         ntrials = len(jts_text_)
         metrics = []
         for index in range(ntrials):
             jts_text, poses_text, root_text, traj_text = self.transform(jts_text_[index], lengths[index])
             jts_ref, poses_ref, root_ref, traj_ref = self.transform(jts_ref_[index], lengths[index])
+
+            feet = jts_text[0][:,[14,19,15,20],:]
+            jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
+            ref_contacts = torch.Tensor(ref_contacts_all[index])[:lengths[index]]
 
             mets = []
             for i in range(len(lengths[index])):
@@ -42,8 +47,10 @@ class ComputeMetricsBest(ComputeMetrics):
                 jts_sigma_ref = variance(jts_ref[i], lengths[index][i], dim=0)
                 AVE_joints = l2_norm(jts_sigma_text, jts_sigma_ref, dim=1)
 
+                contact_weighted_velocity = (ref_contacts[1:-1] * jts_text_velocity).sum(0)
+
                 met = [APE_root, APE_pose, APE_traj, APE_joints,
-                       AVE_root, AVE_pose, AVE_traj, AVE_joints]
+                       AVE_root, AVE_pose, AVE_traj, AVE_joints, contact_weighted_velocity]
                 mets.append(met)
             metrics.append(mets)
 
@@ -58,3 +65,4 @@ class ComputeMetricsBest(ComputeMetrics):
         self.AVE_pose += AVE_pose
         self.AVE_traj += AVE_traj
         self.AVE_joints += AVE_joints
+        self.contact_weighted_velocity += contact_weighted_velocity
