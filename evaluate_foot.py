@@ -153,9 +153,13 @@ def evaluate(cfg: DictConfig) -> None:
     logger.info(f"Computing the {split} metrics")
 
     keyids = get_split_keyids(Path(cfg.path.datasets) / "kit-splits", split)
+    print(len(keyids))
+
     sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
     sub_list = np.load(sub_list_path)['list']
     keyids = list(set(keyids).intersection(set(sub_list)))
+    print(len(keyids))
+
 
     # keep infos for computing
     all_infos = []
