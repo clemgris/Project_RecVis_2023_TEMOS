@@ -68,6 +68,7 @@ class KIT(Dataset):
         self.load_amass_data = load_amass_data
         self.load_with_rot = load_with_rot
         self.downsample = downsample
+        self.contacts = True
 
         if load_amass_data and not self.load_with_rot:
             self.transforms_xyz = transforms_xyz
@@ -84,7 +85,7 @@ class KIT(Dataset):
 
         print(self.split, len(keyids))
 
-        if self.split != 'gtest':
+        if self.split != 'gtest' or self.contacts :
             sub_list_path = os.path.join(os.path.dirname(datapath), "list_data_with_contacts.npz")
             sub_list = np.load(sub_list_path)['list']
             keyids = list(set(keyids).intersection(set(sub_list)))
@@ -148,7 +149,7 @@ class KIT(Dataset):
             # Downsample
             joints, duration = downsample_mmm(joints, downsample=self.downsample, framerate=framerate)
 
-            if self.split != 'gtest':
+            if self.split != 'gtest' or self.contacts:
                 contact_path = os.path.join(os.path.dirname(datapath), "kit_contacts")
                 contacts, velocities = load_contact_keyid(keyid, contact_path)
                 
@@ -189,7 +190,7 @@ class KIT(Dataset):
             features_data[keyid] = features
             texts_data[keyid] = anndata
             durations[keyid] = duration
-            if self.split != 'gtest':
+            if self.split != 'gtest' or self.contacts:
                 all_contacts[keyid] = contacts
                 all_velocities[keyid] = velocities
 
@@ -204,7 +205,7 @@ class KIT(Dataset):
 
         self.features_data = features_data
         self.texts_data = texts_data
-        if self.split != 'gtest':
+        if self.split != 'gtest' or self.contacts:
             self.all_contacts = all_contacts
             self.all_velocities = all_velocities
 
@@ -245,7 +246,7 @@ class KIT(Dataset):
 
         datastruct = self._load_datastruct(keyid, frame_ix)
         text = self._load_text(keyid)
-        if self.split != 'gtest':
+        if self.split != 'gtest' or self.contacts:
             contacts = self._load_contact(keyid)
             velocities = self._load_velocity(keyid)
             element = {"datastruct": datastruct, "text": text,
