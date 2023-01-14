@@ -55,7 +55,7 @@ class ComputeMetricsWorst(ComputeMetrics):
 
         # Quick hacks
         mmm = metrics[np.argmax([x[0][0] for x in metrics])]
-        APE_root, APE_pose, APE_traj, APE_joints, AVE_root, AVE_pose, AVE_traj, AVE_joints = mmm[0]
+        APE_root, APE_pose, APE_traj, APE_joints, AVE_root, AVE_pose, AVE_traj, AVE_joints, contact_weighted_velocity = mmm[0]
         self.APE_root += APE_root
         self.APE_pose += APE_pose
         self.APE_traj += APE_traj
