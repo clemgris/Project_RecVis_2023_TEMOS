@@ -37,6 +37,7 @@ class ComputeMetrics(Metric):
         self.force_in_meter = force_in_meter
         self.add_state("count", default=torch.tensor(0), dist_reduce_fx="sum")
         self.add_state("count_seq", default=torch.tensor(0), dist_reduce_fx="sum")
+        self.add_state("count_foot", default=torch.tensor(0), dist_reduce_fx="sum")
 
         # APE
         self.add_state("APE_root", default=torch.tensor(0.), dist_reduce_fx="sum")
@@ -95,8 +96,6 @@ class ComputeMetrics(Metric):
         return {**APE_metrics, **AVE_metrics, **foot_sliding_metrics}
 
     def update(self, jts_text: Tensor, jts_ref: Tensor, lengths: List[int], ref_contacts: Tensor):
-        print(self.count, self.count_seq)
-
         self.count += sum(lengths)
         self.count_seq += len(lengths)
         self.count_foot += len(lengths)
