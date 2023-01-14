@@ -107,7 +107,8 @@ class ComputeMetrics(Metric):
         jts_text_velocity = torch.norm(((feet[2:]-feet[:-2])/2), dim=-1)
         ref_contacts = torch.Tensor(ref_contacts)
 
-        print(jts_ref.shape)
+        print(len(jts_ref))
+        print(jts_ref[0].shape)
         print(jts_text_velocity.shape)
         print(ref_contacts.shape)
 
